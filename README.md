@@ -1,3 +1,3 @@
-# Dommer
+# DOMinus
 
-DOM Manipulation Tool
+The DOM Master
