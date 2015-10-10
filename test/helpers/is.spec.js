@@ -27,13 +27,26 @@
 
 import { expect } from 'chai';
 import * as is from '../../src/helpers/is';
+import { list } from '../fixtures';
 
 describe('is helpers', () => {
-  const fn = (param) => param;
-  const node = document.createElement('div');
-  const num = 24.6;
-  const obj = {};
-  const srt = 'foo';
+  const div = document.createElement('div');
+  div.innerHTML = list;
+  document.body.appendChild(div);
+
+  let fn;
+  let node;
+  let num;
+  let obj;
+  let srt;
+
+  beforeEach(() => {
+    fn = x => x;
+    node = document.querySelectorAll('li');
+    num = 24.6;
+    obj = {};
+    srt = 'foo';
+  });
 
   it('should return true if is function', () => {
     expect(is.isFunction(fn)).to.be.true;
@@ -43,8 +56,8 @@ describe('is helpers', () => {
     expect(is.isString(fn)).to.be.false;
   });
 
-  it('should return true if is node', () => {
-    expect(is.isFunction(node)).to.be.false;
+  it('should return true if is nodeList', () => {
+    expect(is.isFunction(node)).to.be.true;
     expect(is.isNode(node)).to.be.true;
     expect(is.isNumber(node)).to.be.false;
     expect(is.isObject(node)).to.be.false;

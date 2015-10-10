@@ -1,19 +1,20 @@
 #!/usr/bin/env node
+
 /**
  * @fileOverview Filter used to format TAP report coming from browsers.
  * @name Reporter Filter
  */
 
-var split = require("split");
-var through2 = require("through2");
-var once = require("once");
-var faucet = require("faucet");
-var PassThrough = require("stream").PassThrough;
+import split from 'split';
+import through2 from 'through2';
+import once from 'once';
+import faucet from 'faucet';
+import { PassThrough } from 'stream';
 
 /**
  * Empty function. Useful to initialize functions.
  */
-var noop = function noop() {};
+const noop = () => {};
 
 /**
  * Regex functional helper. Receives a regular expression and returns a new function
@@ -21,23 +22,19 @@ var noop = function noop() {};
  * @param {RegExp} regex
  * @returns {Function}
  */
-var matchRegex = function matchRegex(regex) {
-  return function(str) {
-    return regex.test(str);
-  };
-};
+const matchRegex = regex => str => regex.test(str);
 
 /** Validates if the function is the first line of the TAP report.  */
-var isTAPFirstLine = matchRegex(/(.*) LOG: 'TAP (.*)'/);
+const isTAPFirstLine = matchRegex(/(.*) LOG: 'TAP (.*)'/);
 
 /** Validates if the function is part of the TAP report.  */
-var isLogLine = matchRegex(/(.*) LOG: '(.*)'/);
+const isLogLine = matchRegex(/(.*) LOG: '(.*)'/);
 
 /**
  * Object used to capture a block of content. It receives data until that data doesn't
  * meet a defined requirement and then runs a callback with all the caught info.
  */
-var sequentialStringCatcher = {
+const sequentialStringCatcher = {
   queue: [],
   done: true,
   callbacks: {
@@ -54,7 +51,7 @@ var sequentialStringCatcher = {
    * @param {Function} handler Function to bind to the event.
    * @returns {sequentialStringCatcher} this instance.
    */
-  on: function(event, handler) {
+  on: (event, handler) => {
     if (typeof handler !== "function" || !this.callbacks[event]) return this;
     this.callbacks[event] = handler;
     return this;
@@ -66,7 +63,7 @@ var sequentialStringCatcher = {
    * @param {String} str Line to verify.
    * @returns {Boolean} True if the line was added. False otherwise.
    */
-  add: function(str) {
+  add: str => {
     if (this.done && !this.callbacks.readingStart(str)) {
       this.callbacks.addFailure("\n" + str);
       return false;
@@ -93,17 +90,17 @@ var sequentialStringCatcher = {
  * @param {Function} onFormatEnd Function to be called when the formatting ends.
  * @returns {String} Properly formatted TAP report.
  */
-var formatTAPReport = function(report, onFormatEnd) {
-  var stream = new PassThrough();
-  var formattedReport = "\n\n";
+const formatTAPReport = (report, onFormatEnd) => {
+  const stream = new PassThrough();
+  let formattedReport = "\n\n";
 
   stream.write(report.replace(/(.*) LOG: '(.*)'/g, '$2'));
   stream.end();
   stream.pipe(faucet())
-    .on("data", function(chunk) {
+    .on("data", function (chunk) {
       formattedReport += chunk;
     })
-    .on("end", function() {
+    .on("end", function () {
       onFormatEnd(formattedReport);
     });
 };
@@ -116,26 +113,25 @@ var formatTAPReport = function(report, onFormatEnd) {
  * @param {Function} callbacks.onEnd end callback.
  * @returns {sequentialStringCatcher} Configured instance
  */
-var configSequentialCatcher = once(function(callbacks) {
+const configSequentialCatcher = once(callbacks => {
   return Object.create(sequentialStringCatcher)
     .on("addSuccess", callbacks.onAddSuccess)
     .on("addFailure", callbacks.onAddFailure)
     .on("readingStart", isTAPFirstLine)
     .on("reading", isLogLine)
-    .on("end", function(block) {
-      formatTAPReport(block, callbacks.onEnd);
-    });
+    .on("end", block => formatTAPReport(block, callbacks.onEnd)
+    );
 });
 
 /**
  * Read the lines of the stream and formats the TAP block.
  * @returns {Destroyabvarransform} Though2 return object to be used in the stream line.
  */
-var formatLogs = function() {
-  var sequentialCatcher;
+const formatLogs = () => {
+  let sequentialCatcher;
 
-  return through2(function(chunk, enc, callback) {
-    var str = chunk.toString();
+  return through2((chunk, enc, callback) => {
+    let str = chunk.toString();
 
     sequentialCatcher = configSequentialCatcher({
       onAddSuccess: callback.bind(this),

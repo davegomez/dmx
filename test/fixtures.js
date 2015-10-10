@@ -23,14 +23,10 @@
  */
 
 export const list = `
-  <section class="section">
-    <div class="content">
-      <ul class="list">
-        <li class="item">Item 1</li>
-        <li class="item">Item 2</li>
-        <li class="item">Item 3</li>
-        <li class="item">Item 4</li>
-      </ul>
-    </div>
-  </section>
+  <ul class="list">
+    <li class="list-item">Item 1</li>
+    <li class="list-item">Item 2</li>
+    <li class="list-item">Item 3</li>
+    <li class="list-item">Item 4</li>
+  </ul>
 `;

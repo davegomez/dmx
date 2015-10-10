@@ -1,22 +1,20 @@
-const webpack = require('karma-webpack');
-
 module.exports = function(config) {
   config.set({
     frameworks: ['mocha'],
     files: [
       './node_modules/phantomjs-polyfill/bind-polyfill.js',
       './node_modules/babel-core/browser-polyfill.js',
-      'lib/tests/**/*.spec.js'
+      'test/**/*.spec.js'
     ],
-    plugins: [webpack, 'karma-mocha', 'karma-phantomjs-launcher', 'karma-coverage', 'karma-spec-reporter'],
+    plugins: ['karma-webpack', 'karma-mocha', 'karma-phantomjs-launcher', 'karma-coverage', 'karma-spec-reporter'],
     browsers: ['PhantomJS'],
     preprocessors: {
-      'lib/tests/**/*.spec.js': ['webpack'],
-      'lib/src/**/*.js': ['webpack']
+      'test/**/*.spec.js': ['webpack'],
+      'src/**/*.js': ['webpack']
     },
     reporters: ['spec', 'coverage'],
     coverageReporter: {
-      dir: 'build/reports/coverage',
+      dir: 'reports/coverage',
       reporters: [
         { type: 'html', subdir: 'report-html' },
         { type: 'lcov', subdir: 'report-lcov' },

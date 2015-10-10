@@ -22,4 +22,8 @@
  * THE SOFTWARE.
  */
 
-export const isFunction = f => typeof f === 'function';
+import { isNode } from './is';
+
+export default function (nodes) {
+  return isNode(nodes) ? Array.from(nodes) : [nodes];
+}
