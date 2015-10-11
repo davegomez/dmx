@@ -34,31 +34,38 @@ describe('toArray property', () => {
   div.innerHTML = list;
   document.body.appendChild(div);
 
-  let fn;
+  let fnTrue;
+  let fnFalse;
   let obj;
   let node;
 
   beforeEach(() => {
-    fn = toArray();
+    node = document.querySelectorAll('li');
+    fnTrue = toArray(node);
+    fnFalse = toArray('foo');
     obj = {};
     obj.toArray = toArray();
-    node = document.querySelectorAll('li');
   });
 
   it('should return a function', () => {
     expect(toArray()).isFunction;
   });
 
-  it('should have a toArray property', () => {
-    expect(obj).property('toArray');
-  });
-
-  it('should be defined', () => {
-    expect(fn).isDefine;
+  it('should be define', () => {
+    expect(fnTrue).isDefine;
+    expect(fnFalse).isDefine;
     expect(obj.toArray).isDefine;
   });
 
-  xit('should return an array like object', () => {
-    expect(fn(node)).isArray;
+  it('should return an array like object', () => {
+    expect(fnTrue()).isArray;
+  });
+
+  it('should return false if not nodeList or array', () => {
+    expect(fnFalse()).isFalse;
+  });
+
+  it('should have a toArray property', () => {
+    expect(obj).property('toArray');
   });
 });

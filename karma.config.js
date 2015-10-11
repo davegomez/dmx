@@ -4,12 +4,12 @@ module.exports = function(config) {
     files: [
       './node_modules/phantomjs-polyfill/bind-polyfill.js',
       './node_modules/babel-core/browser-polyfill.js',
-      'test/**/*.spec.js'
+      'tests/**/*.spec.js'
     ],
     plugins: ['karma-webpack', 'karma-mocha', 'karma-phantomjs-launcher', 'karma-coverage', 'karma-spec-reporter'],
     browsers: ['PhantomJS'],
     preprocessors: {
-      'test/**/*.spec.js': ['webpack'],
+      'tests/**/*.spec.js': ['webpack'],
       'src/**/*.js': ['webpack']
     },
     reporters: ['spec', 'coverage'],

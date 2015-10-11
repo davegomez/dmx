@@ -22,7 +22,12 @@
  * THE SOFTWARE.
  */
 
+import { isNode } from '../helpers/is';
+
 export default function (nodeList) {
-  return () => Array.from(nodeList);
+  return () =>
+    isNode(nodeList) || Array.isArray(nodeList) ?
+      Array.from(nodeList) :
+      false;
 }
 
