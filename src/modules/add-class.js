@@ -22,6 +22,15 @@
  * THE SOFTWARE.
  */
 
+/**
+ * Add the correspondend classes to each one of the DOMinus object HTML element
+ * nodes
+ * @param {Object} elements - Collection of HTML nodes in the DOMinus object
+ * to which we want to add the corresponding classes
+ * @returns {Function} Function that takes a string of class names separated by
+ * commas to be added to each one of the HTML element nodes inside the DOMinus
+ * object
+ */
 export default function (elements) {
   return classNames => {
     classNames
