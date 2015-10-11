@@ -17,15 +17,18 @@ module.exports = function () {
     files: [
       { pattern: 'node_modules/phantomjs-polyfill/bind-polyfill.js', instrument: false },
       { pattern: 'node_modules/babel-core/browser-polyfill.js', instrument: false },
-      { pattern: 'src/**/*.js', load: false }
+      { pattern: 'src/**/*.js', load: false },
+      { pattern: 'tests/*.js', load: false }
     ],
 
     tests: [
       { pattern: 'tests/**/*.spec.js', load: false }
     ],
 
+    testFramework: "mocha",
+
     preprocessors: {
-      'src/**/*.js': file => babel.transform(file.content, { sourceMap: true })
+      '**/*.js': file => babel.transform(file.content, { sourceMap: true })
     },
 
     postprocessor: webpackPostprocessor,

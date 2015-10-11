@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import build from './modules/build';
+import create from './modules/create';
 
 export default function (selector) {
-  return build(selector);
+  return create(selector);
 }

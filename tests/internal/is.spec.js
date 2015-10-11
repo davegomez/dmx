@@ -26,10 +26,10 @@
 // jscs: disable
 
 import { expect } from 'chai';
-import * as is from '../../src/helpers/is';
-import { list } from '../fixtures';
+import * as is from '../../src/internal/is';
+import { list, noop } from './../../src/internal/fixtures';
 
-describe('is helpers', () => {
+describe('is internal', () => {
   const div = document.createElement('div');
   div.innerHTML = list;
   document.body.appendChild(div);
@@ -41,7 +41,7 @@ describe('is helpers', () => {
   let srt;
 
   beforeEach(() => {
-    fn = x => x;
+    fn = noop;
     node = document.querySelectorAll('li');
     num = 24.6;
     obj = {};

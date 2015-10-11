@@ -21,10 +21,6 @@
     "url": "https://github.com/davegomez/dominus/issues"
   },
   "homepage": "https://github.com/baldore/fabric-mocha",
-  "dependencies": {
-    "immutable": "^3.7.5",
-    "ramda": "^0.17.1"
-  },
   "devDependencies": {
     "autoprefixer-loader": "^3.1.0",
     "babel": "^5.8.23",

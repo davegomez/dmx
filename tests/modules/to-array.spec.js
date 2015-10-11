@@ -27,11 +27,11 @@
 
 import { assert, expect } from 'chai';
 import toArray from '../../src/modules/to-array';
-import { list } from '../fixtures';
+import { uList } from '../../src/internal/fixtures';
 
 describe('toArray property', () => {
   const div = document.createElement('div');
-  div.innerHTML = list;
+  div.innerHTML = uList;
   document.body.appendChild(div);
 
   let fnTrue;

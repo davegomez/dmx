@@ -22,8 +22,16 @@
  * THE SOFTWARE.
  */
 
-import { isNode } from '../helpers/is';
+import { isNode } from '../internal/is';
 
+/**
+ * Transforms the DOMinus NodeList of HTML elements into a native Array allowing
+ * the user to use the native Array function on the returned list of elements
+ * @param {Object} nodeList - Collection of HTML nodes to return as a JavaScript
+ * native array
+ * @returns {Object} JavaScript native Array collection containing the DOMinus
+ * Object HTML element nodes
+ */
 export default function (nodeList) {
   return () =>
     isNode(nodeList) || Array.isArray(nodeList) ?

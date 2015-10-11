@@ -22,11 +22,26 @@
  * THE SOFTWARE.
  */
 
-export const list = `
-  <ul class="list">
-    <li class="list-item">Item 1</li>
-    <li class="list-item">Item 2</li>
-    <li class="list-item">Item 3</li>
-    <li class="list-item">Item 4</li>
-  </ul>
-`;
+import addClass from './add-class';
+import builder from '../internal/build';
+import { isNode, isObject } from '../internal/is';
+import clean from '../internal/clean';
+import removeClass from './remove-class';
+import toArray from './to-array';
+import wrap from '../internal/wrap';
+
+export default function (selector) {
+  const pattern = /[<\/>]/g;
+
+  const nodes = isObject(selector) ?
+    wrap(selector) :
+    builder(selector, pattern);
+
+  nodes.addClass = addClass(nodes);
+  nodes.selector = isNode(selector) ?
+    clean(selector, pattern) : 'Element';
+  nodes.removeClass = removeClass(nodes);
+  nodes.toArray = toArray();
+
+  return Object.create(nodes);
+}
