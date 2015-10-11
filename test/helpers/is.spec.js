@@ -49,42 +49,42 @@ describe('is helpers', () => {
   });
 
   it('should return true if is function', () => {
-    expect(is.isFunction(fn)).to.be.true;
-    expect(is.isNode(fn)).to.be.false;
-    expect(is.isNumber(fn)).to.be.false;
-    expect(is.isObject(fn)).to.be.false;
-    expect(is.isString(fn)).to.be.false;
+    expect(is.isFunction(fn)).isTrue;
+    expect(is.isNode(fn)).isFalse;
+    expect(is.isNumber(fn)).isFalse;
+    expect(is.isObject(fn)).isFalse;
+    expect(is.isString(fn)).isFalse;
   });
 
   it('should return true if is nodeList', () => {
-    expect(is.isFunction(node)).to.be.true;
-    expect(is.isNode(node)).to.be.true;
-    expect(is.isNumber(node)).to.be.false;
-    expect(is.isObject(node)).to.be.false;
-    expect(is.isString(node)).to.be.false;
+    expect(is.isFunction(node)).isTrue;
+    expect(is.isNode(node)).isTrue;
+    expect(is.isNumber(node)).isFalse;
+    expect(is.isObject(node)).isFalse;
+    expect(is.isString(node)).isFalse;
   });
 
   it('should return true if is number', () => {
-    expect(is.isFunction(num)).to.be.false;
-    expect(is.isNode(num)).to.be.false;
-    expect(is.isNumber(num)).to.be.true;
-    expect(is.isObject(num)).to.be.false;
-    expect(is.isString(num)).to.be.false;
+    expect(is.isFunction(num)).isFalse;
+    expect(is.isNode(num)).isFalse;
+    expect(is.isNumber(num)).isTrue;
+    expect(is.isObject(num)).isFalse;
+    expect(is.isString(num)).isFalse;
   });
 
   it('should return true if is object', () => {
-    expect(is.isFunction(obj)).to.be.false;
-    expect(is.isNode(num)).to.be.false;
-    expect(is.isNumber(obj)).to.be.false;
-    expect(is.isObject(obj)).to.be.true;
-    expect(is.isString(obj)).to.be.false;
+    expect(is.isFunction(obj)).isFalse;
+    expect(is.isNode(num)).isFalse;
+    expect(is.isNumber(obj)).isFalse;
+    expect(is.isObject(obj)).isTrue;
+    expect(is.isString(obj)).isFalse;
   });
 
   it('should return true if is string', () => {
-    expect(is.isFunction(srt)).to.be.false;
-    expect(is.isNode(srt)).to.be.false;
-    expect(is.isNumber(srt)).to.be.false;
-    expect(is.isObject(srt)).to.be.false;
-    expect(is.isString(srt)).to.be.true;
+    expect(is.isFunction(srt)).isFalse;
+    expect(is.isNode(srt)).isFalse;
+    expect(is.isNumber(srt)).isFalse;
+    expect(is.isObject(srt)).isFalse;
+    expect(is.isString(srt)).isTrue;
   });
 });

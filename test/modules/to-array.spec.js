@@ -25,25 +25,40 @@
 /* eslint-disable */
 // jscs: disable
 
-import { expect } from 'chai';
-import * as is from '../../src/helpers/is';
+import { assert, expect } from 'chai';
 import toArray from '../../src/modules/to-array';
+import { list } from '../fixtures';
 
 describe('toArray property', () => {
-  const fn = toArray();
-  const obj = {};
+  const div = document.createElement('div');
+  div.innerHTML = list;
+  document.body.appendChild(div);
 
-  obj.toArray = toArray();
+  let fn;
+  let obj;
+  let node;
+
+  beforeEach(() => {
+    fn = toArray();
+    obj = {};
+    obj.toArray = toArray();
+    node = document.querySelectorAll('li');
+  });
 
   it('should return a function', () => {
-    expect(is.isFunction(fn)).to.be.true;
-    expect(is.isNode(fn)).to.be.false;
-    expect(is.isNumber(fn)).to.be.false;
-    expect(is.isObject(fn)).to.be.false;
-    expect(is.isString(fn)).to.be.false;
+    expect(toArray()).isFunction;
   });
 
   it('should have a toArray property', () => {
-    expect(obj).to.have.property('toArray');
+    expect(obj).property('toArray');
+  });
+
+  it('should be defined', () => {
+    expect(fn).isDefine;
+    expect(obj.toArray).isDefine;
+  });
+
+  xit('should return an array like object', () => {
+    expect(fn(node)).isArray;
   });
 });
