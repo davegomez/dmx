@@ -1,41 +1,18 @@
-/*
- * The MIT License (MIT)
- *
- * Copyright (c) 2015 David Gómez @davegomez
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-
-import { isNode } from '../internal/is';
+import { isNode } from '../internal/helpers';
 
 /**
  * Transforms the DOMinus NodeList of HTML elements into a native Array allowing
  * us to use the native Array function on the returned collection of elements
  * @param {Object} elements - Collection of HTML nodes to return as a JavaScript
  * native array
+ * @returns {Function} A helper function to allows the transformation of DOMinus
+ * objects to JavaScript native Arrays
  * @returns {Object} JavaScript native Array collection containing the DOMinus
- * Object HTML element nodes
+ * object HTML element nodes or the passed element as a native Array
  */
-export default function (elements) {
-  return () =>
+export default function (elements: Object): Function {
+  return (): Array<Object> =>
     isNode(elements) || Array.isArray(elements) ?
       Array.from(elements) :
-      false;
+      [elements];
 }
-
