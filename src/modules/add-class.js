@@ -1,14 +1,13 @@
 /**
- * Add the correspondend classes to each one of the DOMinus object HTML element
+ * Add the correspondend classes to each one of the Dmx object HTML element
  * nodes
- * @param {Object} elements - Collection of HTML nodes in the DOMinus object
+ * @param {Object} elements - Collection of HTML nodes in the Dmx object
  * to which we want to add the corresponding classes
  * @returns {Function} Function that takes a string of class names separated by
- * commas to be added to each one of the HTML element nodes inside the DOMinus
+ * commas to be added to each one of the HTML element nodes inside the Dmx
  * object
- * @returns {Object} A DOMinus object
  */
-export default function (elements: Object): Function {
+export default (elements: Object): Function => {
   return (classNames: string): Object => {
     classNames
       .split(/, +/)
@@ -21,4 +20,4 @@ export default function (elements: Object): Function {
 
     return elements;
   };
-}
+};

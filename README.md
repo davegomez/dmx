@@ -1,4 +1,4 @@
-# DOMinus
+# DmxJS
 
 The DOM Master
 

@@ -29,10 +29,10 @@ export const oList = `
 
 export const uList = `
   <ul class="list">
-    <li class="list-item">Item 1</li>
-    <li class="list-item">Item 2</li>
-    <li class="list-item">Item 3</li>
-    <li class="list-item">Item 4</li>
+    <li class="list-item test-class__0 test-class__1 test-class__3">Item 1</li>
+    <li class="list-item test-class__1 test-class__2">Item 2</li>
+    <li class="list-item test-class__0 test-class__2 test-class__3">Item 3</li>
+    <li class="list-item test-class__1 test-class__3">Item 4</li>
   </ul>
 `;
 

@@ -11,10 +11,10 @@ describe('addClass function', () => {
   div.innerHTML = oList;
   document.body.appendChild(div);
 
-  const DOMinus = document.querySelectorAll('li');
-  DOMinus.addClass = addClass(DOMinus);
-  DOMinus.addClass('foo');
-  DOMinus.addClass('bar, baz');
+  const dmx = document.querySelectorAll('li');
+  dmx.addClass = addClass(dmx);
+  dmx.addClass('foo');
+  dmx.addClass('bar, baz');
 
   let foo;
   let bar;
@@ -33,11 +33,11 @@ describe('addClass function', () => {
   });
 
   it('should return a function', () => {
-    expect(addClass(DOMinus)).isFunction;
+    expect(addClass(dmx)).isFunction;
   });
 
   it('should be define', () => {
-    expect(DOMinus.addClass).isDefine;
+    expect(dmx.addClass).isDefine;
   });
 
   it('should have at least one element', () => {

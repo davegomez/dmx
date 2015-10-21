@@ -9,15 +9,15 @@ import wrap from '../internal/wrap';
 export default function (selector) {
   const pattern = /[<\/>]/g;
 
-  const DOMinus = isObject(selector) ?
+  const dmx = isObject(selector) ?
     wrap(selector) :
     builder(selector, pattern);
 
-  DOMinus.addClass = addClass(DOMinus);
-  DOMinus.selector = isNode(selector) ?
+  dmx.addClass = addClass(dmx);
+  dmx.selector = isNode(selector) ?
     clean(selector, pattern) : 'Element';
-  DOMinus.removeClass = removeClass(DOMinus);
-  DOMinus.toArray = toArray();
+  dmx.removeClass = removeClass(dmx);
+  dmx.toArray = toArray();
 
-  return Object.create(DOMinus);
+  return Object.create(dmx);
 }

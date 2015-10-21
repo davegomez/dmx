@@ -12,15 +12,15 @@ describe('toArray property', () => {
 
   let fromElements;
   let fromAny;
-  let DOMinus;
+  let dmx;
   let elements;
 
   beforeEach(() => {
     elements = document.querySelectorAll('li');
     fromElements = toArray(elements);
     fromAny = toArray('foo');
-    DOMinus = {};
-    DOMinus.toArray = toArray();
+    dmx = {};
+    dmx.toArray = toArray();
   });
 
   it('should return a function', () => {
@@ -30,7 +30,7 @@ describe('toArray property', () => {
   it('should be define', () => {
     expect(fromElements).isDefine;
     expect(fromAny).isDefine;
-    expect(DOMinus.toArray).isDefine;
+    expect(dmx.toArray).isDefine;
   });
 
   it('should return an array like object', () => {
@@ -44,6 +44,6 @@ describe('toArray property', () => {
   });
 
   it('should have a toArray property', () => {
-    expect(DOMinus).property('toArray');
+    expect(dmx).property('toArray');
   });
 });
